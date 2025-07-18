@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=10"
+  },
+  "scripts": {
+    "client-dev": "pnpm --filter client dev",
+    "server-start": "pnpm --filter server start",
+    "client-install": "pnpm --filter client install",
+    "server-install": "pnpm --filter server install"
+  },
+  "packageManager": "pnpm@10.2.1",
+  "devDependencies": {
+    "pnpm": "^10.2.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

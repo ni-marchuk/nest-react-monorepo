@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    container_name: my_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  client:
+    build:
+      context: ..
+      dockerfile: .docker_dev/Dockerfile
+      target: client
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../packages/client:/app/packages/client
+  server:
+    build:
+      context: ..
+      dockerfile: .docker_dev/Dockerfile
+      target: server
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../packages/server:/app/packages/server
+volumes:
+  pgdata:
