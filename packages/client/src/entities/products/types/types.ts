@@ -1,6 +1,9 @@
+export type ProductsCategory = 'tech' | 'books' | 'all';
+
 export type ProductsParams = {
   sort: "price-asc" | "price-desc" | "title-asc"
   filters: {
+    categories: Array<ProductsCategory>
     maxPrice: number
     inStockOnly: boolean
   },
@@ -15,5 +18,12 @@ export type Product = {
   title: string
   price: number
   inStock: boolean
-  category: string
+  category: ProductsCategory
+}
+
+export type ProductsResultQuery = {
+  products: Array<Product>
+  totalItems: number
+  totalPages: number
+  currentPage: number
 }
